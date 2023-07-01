@@ -6,11 +6,27 @@ namespace allSpice.Controllers
   {
     private readonly RecipesService _recipesService;
     private readonly Auth0Provider _auth;
+    private readonly IngredientsService _ingredientsService;
 
-    public RecipesController(RecipesService recipesService, Auth0Provider auth)
+    public RecipesController(RecipesService recipesService, Auth0Provider auth, IngredientsService ingredientsService)
     {
       _recipesService = recipesService;
       _auth = auth;
+      _ingredientsService = ingredientsService;
+    }
+
+    [HttpGet("{recipeId}/ingredients")]
+    public ActionResult<List<Ingredient>> GetIngredientsByRecipeId(int recipeId)
+    {
+      try
+      {
+        List<Ingredient> ingredients = _ingredientsService.GetIngredientsByRecipeId(recipeId);
+        return Ok(ingredients);
+      }
+      catch (Exception e)
+      {
+        return BadRequest(e.Message);
+      }
     }
 
     [HttpPost]
@@ -27,7 +43,7 @@ namespace allSpice.Controllers
       }
       catch (Exception e)
       {
-        return new ActionResult<Recipe>(BadRequest(e.Message));
+        return BadRequest(e.Message);
       }
     }
 

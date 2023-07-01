@@ -10,4 +10,9 @@ namespace allSpice.Models
     public string creatorId { get; set; }
     public Account creator { get; set; }
   }
+
+  public class SubscriberRecipe : Recipe
+  {
+    public int SubscriptionId { get; set; }
+  }
 }
