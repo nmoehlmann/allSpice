@@ -30,5 +30,20 @@ namespace allSpice.Controllers
         return BadRequest(e.Message);
       }
     }
+
+    [HttpDelete("{subId}")]
+    public async Task<ActionResult<Subscriber>> DeleteSubscriber(int subId)
+    {
+      try
+      {
+        Account userInfo = await _auth.GetUserInfoAsync<Account>(HttpContext);
+        _subscribersService.DeleteSubscriber(subId, userInfo.Id);
+        return Ok("Subscription Removed");
+      }
+      catch (Exception e)
+      {
+        return BadRequest(e.Message);
+      }
+    }
   }
 }

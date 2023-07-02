@@ -24,7 +24,31 @@ namespace allSpice.Repositories
       return subData;
     }
 
-    internal List<SubscriberRecipe> GetMySubscribedRecipes(string accountId)
+    internal int DeleteSubscriber(int subId)
+    {
+        string sql = @"
+        DELETE FROM subscribers
+        WHERE Id = @subId
+        LIMIT 1
+        ;";
+
+        int rows = _db.Execute(sql, new {subId});
+        return rows;
+    }
+
+    internal Subscriber GetById(int subId)
+    {
+      string sql = @"
+      SELECT
+      sub.*
+      FROM subscribers sub
+      WHERE sub.Id = @subId
+      ;";
+      Subscriber sub = _db.Query<Subscriber>(sql, new {subId}).FirstOrDefault();
+      return sub;
+    }
+
+        internal List<SubscriberRecipe> GetMySubscribedRecipes(string accountId)
     {
       string sql = @"
       SELECT
