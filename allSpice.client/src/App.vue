@@ -1,13 +1,11 @@
 <template>
-  <header>
-    <Navbar />
-  </header>
   <main>
     <router-view />
   </main>
-   <footer class="bg-dark text-light">
-    Made with 💖 by CodeWorks
-  </footer>
+
+  <div class="modal fade" id="recipeModal" tabindex="-1" aria-labelledby="createRecipeTab" aria-hidden="true">
+    <RecipeModal />
+  </div>
 </template>
 
 <script>
@@ -20,8 +18,7 @@ export default {
     return {
       appState: computed(() => AppState)
     }
-  },
-  components: { Navbar }
+  }
 }
 </script>
 <style lang="scss">
@@ -29,12 +26,5 @@ export default {
 
 :root{
   --main-height: calc(100vh - 32px - 64px);
-}
-
-
-footer {
-  display: grid;
-  place-content: center;
-  height: 32px;
 }
 </style>

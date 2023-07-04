@@ -1,5 +1,4 @@
 import { dev } from '../env'
-
 function log(type, content) {
   if (dev) {
     // eslint-disable-next-line no-console
