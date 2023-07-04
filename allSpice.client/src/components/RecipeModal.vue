@@ -51,7 +51,7 @@
 
 
 <script>
-import { Modal } from 'bootstrap';
+// import { Modal } from 'bootstrap';
 import { recipesService } from '../services/RecipesService';
 import Pop from '../utils/Pop';
 import { ref } from 'vue';
@@ -67,7 +67,7 @@ export default {
                     const formData = editable.value
                     await recipesService.createRecipe(formData)
                     editable.value = {}
-                    Modal.getOrCreateInstance('#createRecipe').hide()
+                    // Modal.getOrCreateInstance('#createRecipe').hide()
                 } catch (error) {
                     Pop.error('error creating recipe', error)
                 }

@@ -1,6 +1,6 @@
 <template>
 
-    <main class="elevation-5 food-card my-4 mx-3 d-flex flex-column justify-content-between rounded-2">
+    <main class="elevation-5 food-card my-4 mx-3 d-flex flex-column justify-content-between rounded-2" data-bs-toggle="modal" data-bs-target="#activeRecipeModal" @click="getActiveRecipe(recipe.id)">
         <section class="d-flex justify-content-between text-light">
             <div class="text p-1 m-2">{{ recipe.category }}</div>
             <div class="text p-1 m-2"><i class="mdi mdi-heart"></i></div>
@@ -20,6 +20,7 @@ import { computed } from 'vue';
 import { Recipe } from '../models/Recipe';
 import { recipesService } from '../services/RecipesService';
 import { AppState } from '../AppState';
+import Pop from '../utils/Pop';
 
 export default {
     props: {
@@ -27,7 +28,16 @@ export default {
     },
     setup(props){
         return {
-            coverImg: computed(() => `url(${props.recipe.img})`)
+            coverImg: computed(() => `url(${props.recipe.img})`),
+
+            async getActiveRecipe(recipeId) {
+                // debugger
+                try {
+                    recipesService.getActiveRecipe(recipeId)
+                } catch (error) {  
+                    Pop.error('Couldnt get that recipe', error)
+                }
+            }
         }
     }
 }
