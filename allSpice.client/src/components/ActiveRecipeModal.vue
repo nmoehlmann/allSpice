@@ -23,29 +23,29 @@
                             </div>
                             <div class="col-12 py-3">
                                 <section class="row mb-3">
-                                    <li>carrots</li>
+                                    <li v-for="i in ingredients">carrots</li>
                                 </section>
                                 <section class="row">
-                                    <form @submit="createIngredient(recipe.id)">
+                                    <form @submit.prevent="createIngredient(recipe.id)">
                                         <div class="text-center my-2 fs-5">
                                             <p>Add Ingredients</p>
                                         </div>
                                         <div class="d-flex">
                                             <div class="d-flex flex-column">
-                                                <input class="form-control" type="text" placeholder="Name" v-model="editable.name">
-                                                <input class="form-control" type="text" placeholder="Quantity" v-model="editable.quantity">
+                                                <input class="form-control" type="text" placeholder="Name" v-model="editable.name" required>
+                                                <input class="form-control" type="text" placeholder="Quantity" v-model="editable.quantity" required>
                                             </div>
                                             <div class="d-flex">
-                                                <button class="btn plus-button" type="submit"><i class="mdi mdi-plus text-light"></i></button>
+                                                <button class="btn plus-button mdi mdi-plus text-light" type="submit"></button>
                                             </div>
                                         </div>
                                     </form>
                                 </section>
                             </div>
                         </div>
-                        <div class="col-12">
-                            <p></p>
-                        </div>
+                        <!-- <div class="col-12">
+                            <p>deez nutz</p>
+                        </div> -->
                     </content>
                 </section>
             </main>
@@ -57,16 +57,42 @@
 <script>
 import { computed, ref } from 'vue';
 import { AppState } from '../AppState';
+import Pop from '../utils/Pop';
+import { ingredientsService } from '../services/IngredientsService';
 
 
 export default {
     setup(){
         const editable = ref({})
+        
+        // async function getIngredients() {
+        //         // debugger
+        //         try {
+        //             if(AppState.activeRecipe == null) {
+        //                 return
+        //             }
+        //             recipeId = AppState.activeRecipe.id
+        //             await ingredientsService.getIngredients(recipeId)
+        //         } catch (error) {
+        //             Pop.error(error, 'error getting ingredients')
+        //         }
+        //     }
 
         return {
             editable,
             recipe: computed(() => AppState.activeRecipe),
-            recipeImg: computed(() => `url(${AppState.activeRecipe.img})`)
+            recipeImg: computed(() => `url(${AppState.activeRecipe.img})`),
+            ingredients: computed(() => AppState.ingredients),
+
+            async createIngredient(recipeId) {
+                try {
+                    const formData = editable.value
+                    await ingredientsService.createIngredient(formData, recipeId)
+                    editable.value = {}
+                } catch (error) {
+                    Pop.error('Error creating ingredient')
+                }
+            }
         }
     }
 }

@@ -21,6 +21,7 @@ import { Recipe } from '../models/Recipe';
 import { recipesService } from '../services/RecipesService';
 import { AppState } from '../AppState';
 import Pop from '../utils/Pop';
+import { ingredientsService } from '../services/IngredientsService';
 
 export default {
     props: {
@@ -33,9 +34,10 @@ export default {
             async getActiveRecipe(recipeId) {
                 // debugger
                 try {
-                    recipesService.getActiveRecipe(recipeId)
+                    await recipesService.getActiveRecipe(recipeId)
+                    await ingredientsService.getIngredients(recipeId)
                 } catch (error) {  
-                    Pop.error('Couldnt get that recipe', error)
+                    Pop.error('Couldnt get that recipe and/or ingredients', error)
                 }
             }
         }
