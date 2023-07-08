@@ -20,6 +20,13 @@ class IngredientsService {
         AppState.ingredients = res.data.map(i => new Ingredient(i))
         logger.log(AppState.ingredients, 'new ingredients array in appstate')
     }
+
+    async deleteIngredient(ingredientId) {
+        logger.log('deleting ingredient')
+        const res = await api.delete(`api/ingredients/${ingredientId}`)
+        logger.log('deleted', res.data)
+        AppState.ingredients = AppState.ingredients.filter(i => i.id != ingredientId)
+    }
 }
 
 export const ingredientsService = new IngredientsService()

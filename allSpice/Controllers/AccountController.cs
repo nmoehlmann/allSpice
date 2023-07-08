@@ -1,7 +1,7 @@
 namespace allSpice.Controllers;
 
 [ApiController]
-[Route("[controller]")]
+[Route("account")]
 public class AccountController : ControllerBase
 {
   private readonly AccountService _accountService;
@@ -30,7 +30,7 @@ public class AccountController : ControllerBase
     }
   }
 
-  [HttpGet("subscriptions")]
+  [HttpGet("favorites")]
   [Authorize]
   public async Task<ActionResult<List<SubscriberRecipe>>> GetMySubscribedRecipes()
   {

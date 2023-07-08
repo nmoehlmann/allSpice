@@ -22,10 +22,11 @@
                                 <h2>Ingredients</h2>
                             </div>
                             <div class="col-12 py-3">
-                                <section class="row mb-3">
-                                    <li v-for="i in ingredients">carrots</li>
+                                <section class="row mb-3" v-for="i in ingredients">
+                                    <Ingredient :ingredient="i" />
+                                    <!-- <li v-for="i in ingredients">{{ i.quantity }} {{ i.name }}</li> -->
                                 </section>
-                                <section class="row">
+                                <section class="row" v-if="account.id == recipe.creatorId">
                                     <form @submit.prevent="createIngredient(recipe.id)">
                                         <div class="text-center my-2 fs-5">
                                             <p>Add Ingredients</p>
@@ -40,12 +41,12 @@
                                             </div>
                                         </div>
                                     </form>
+                                    <div class="my-2 d-flex justify-content-end">
+                                        <button @click="deleteRecipe(recipe.id)" class="btn btn-danger mdi mdi-delete"></button>
+                                    </div>
                                 </section>
                             </div>
                         </div>
-                        <!-- <div class="col-12">
-                            <p>deez nutz</p>
-                        </div> -->
                     </content>
                 </section>
             </main>
@@ -59,6 +60,8 @@ import { computed, ref } from 'vue';
 import { AppState } from '../AppState';
 import Pop from '../utils/Pop';
 import { ingredientsService } from '../services/IngredientsService';
+import { recipesService } from '../services/RecipesService';
+import { Modal } from 'bootstrap';
 
 
 export default {
@@ -80,6 +83,7 @@ export default {
 
         return {
             editable,
+            account: computed(() => AppState.account),
             recipe: computed(() => AppState.activeRecipe),
             recipeImg: computed(() => `url(${AppState.activeRecipe.img})`),
             ingredients: computed(() => AppState.ingredients),
@@ -91,6 +95,15 @@ export default {
                     editable.value = {}
                 } catch (error) {
                     Pop.error('Error creating ingredient')
+                }
+            },
+
+            async deleteRecipe(recipeId) {
+                try {
+                    await recipesService.deleteRecipe(recipeId)
+                    Modal.getOrCreateInstance('#activeRecipeModal').hide()
+                } catch (error) {
+                    Pop.error('error deleting recipe', error)
                 }
             }
         }

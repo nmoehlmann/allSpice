@@ -9,3 +9,10 @@ export class Recipe {
         this.creator = data.creator
     }
 }
+
+export class SubscriptionRecipe extends Recipe{
+    constructor(data){
+        super(data)
+        this.subscriptionId = data.subscriptionId
+    }
+}

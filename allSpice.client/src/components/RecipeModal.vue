@@ -67,7 +67,7 @@ export default {
                     const formData = editable.value
                     await recipesService.createRecipe(formData)
                     editable.value = {}
-                    // Modal.getOrCreateInstance('#createRecipe').hide()
+                    Modal.getOrCreateInstance('#activeRecipeModal').hide()
                 } catch (error) {
                     Pop.error('error creating recipe', error)
                 }
