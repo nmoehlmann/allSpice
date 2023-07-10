@@ -4,18 +4,21 @@
             <div class="col-12">
                 <Navbar />
             </div>
-            <div class="col-12 d-flex justify-content-center align-items-center">
+            <div class="col-12 d-flex justify-content-center align-items-center text-light">
                 <div class="fw-medium">
-                    <h1 class="display-1">All-Spice</h1>
+                    <h1 class="title-text">All-Spice</h1>
                     <div class="text-center">
                         <p class="mb-2">Cherish Your Family</p>
                         <p>And Their Cooking</p>
                     </div>
                 </div>
             </div>
-            <div class="col-6 offset-3">
-                <div class="d-flex justify-content-evenly elevation-3 p-2">
-                    <p @click="getAllRecipes()" class="home">Home</p>
+            <div class="col-10 offset-1 text-light category-container">
+                <div class="d-flex justify-content-evenly align-items-center elevation-3 p-2 category-card fs-2">
+                    <div>
+                        <p @click="getAllRecipes()" class="home">Home</p>
+                        <div></div>
+                    </div>
                     <p @click="getMyRecipes()" class="myRecipes">My Recipes</p>
                     <p @click="displayMyFavorites()" class="favorites">Favorites</p>
                 </div>
@@ -30,7 +33,7 @@ import { recipesService } from '../services/RecipesService';
 import Pop from '../utils/Pop';
 
 export default {
-    setup(){
+    setup() {
         return {
             async getAllRecipes() {
                 try {
@@ -62,19 +65,48 @@ export default {
 
 
 <style lang="scss" scoped>
+.title-text {
+    font-size: 7rem;
+    font-family: 'Noto Serif Makasar', serif;
+}
 
-    .home, .myRecipes, .favorites {
-        cursor: pointer;
-    }
-    .hero-img {
-        background-image: url("https://i0.wp.com/diplomartbrussels.com/wp-content/uploads/2020/09/food-background-images-94-images-in-co-381169-png-images-pngio-food-background-png-1440_619.png?fit=1440%2C619&ssl=1");
-        // background-position: center;
-        background-size: 100%;
-        background-repeat: no-repeat;
-        height: 20rem;
-    }
+main {
+    padding-left: 0;
+    padding-right: 0;
+}
 
-    p {
-        margin: 0;
-    }
+.category-container {
+    position: relative;
+    top: 4rem;
+}
+
+.category-card {
+    font-family: 'Noto Serif Makasar', serif;
+    height: 5rem;
+    background-color: #73877B
+}
+
+.home,
+.myRecipes,
+.favorites {
+    cursor: pointer;
+}
+
+.home:hover,
+.myRecipes:hover,
+.favorites:hover {
+    color: yellow;
+}
+
+.hero-img {
+    background-image: url("https://static.vecteezy.com/system/resources/previews/003/823/542/original/spices-for-use-as-cooking-ingredients-on-a-wooden-background-with-fresh-vegetables-healthy-food-herbs-organic-vegetables-on-the-table-raw-materials-of-cooking-preparation-tom-yum-free-photo.jpg");
+    // background-position: center;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    height: 20rem;
+}
+
+p {
+    margin: 0;
+}
 </style>
