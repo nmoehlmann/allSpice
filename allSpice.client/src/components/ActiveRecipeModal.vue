@@ -1,7 +1,7 @@
 <template>
     <div class="modal-dialog modal-dialog-centered modal-xl">
         <div class="modal-content container-fluid">
-            <main class="row">
+            <main class="row" v-if="checkActiveRecipe('show')">
                 <div class="col-4 recipeImg"></div>
                 <section class="col-8">
                     <header class="row mb-4">
@@ -49,6 +49,9 @@
                         </div>
                     </content>
                 </section>
+                <div v-if="checkActiveRecipe('hide')">
+                    <h1>HIIIII</h1>
+                </div>
             </main>
         </div>
     </div>
@@ -62,6 +65,7 @@ import Pop from '../utils/Pop';
 import { ingredientsService } from '../services/IngredientsService';
 import { recipesService } from '../services/RecipesService';
 import { Modal } from 'bootstrap';
+import { logger } from '../utils/Logger';
 
 
 export default {
@@ -104,6 +108,21 @@ export default {
                     Modal.getOrCreateInstance('#activeRecipeModal').hide()
                 } catch (error) {
                     Pop.error('error deleting recipe', error)
+                }
+            },
+
+            checkActiveRecipe(showHide) {
+                if(showHide == 'show') {
+                    if(AppState.activeRecipe != null) {
+                        logger.log('activeRecipe exists')
+                        return true
+                    }
+                }
+                if(showHide == 'hide') {
+                    if(AppState.activeRecipe == null) {
+                        logger.log('activeRecipe doesnt exist')
+                        return true
+                    }
                 }
             }
         }
