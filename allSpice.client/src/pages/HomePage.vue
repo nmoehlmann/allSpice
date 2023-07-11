@@ -28,15 +28,20 @@ import { Account } from '../models/Account';
 export default {
   setup() {
 
-    function timeoutForFavorites() {
-      setTimeout(getMyFavorites, 2000)
-    }
+    // function timeoutForFavorites() {
+    //   setTimeout(checkAccount, 2000)
+    // }
 
     async function getMyFavorites() {
       try {
+        logger.log(AppState.account)
+        // if (AppState.account.status == "noUser") {
+        //   logger.log('you arent signed in!')
+        //   return
+        // }
         await recipesService.getMyFavorites()
       } catch (error) {
-        Pop.error('error getting favorites', error)
+        Pop.noUser("you arent signed in!")
       }
     }
 
@@ -50,7 +55,7 @@ export default {
     }
     onMounted(() => {
       getAllRecipes();
-      timeoutForFavorites();
+      getMyFavorites();
     });
     return {
       recipes: computed(() => AppState.recipes)

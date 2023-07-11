@@ -12,15 +12,15 @@
             </section>
         </section>
         <section class="row">
-            <div class="d-flex justify-content-between align-items-center px-5">
-                <p class="fw-bold fs-5">{{ recipe.creator.name }}</p>
+            <div class="d-flex justify-content-between align-items-center">
+                <p class="fw-bold fs-5 p-1">{{ recipe.creator.name }}</p>
                 <div v-if="checkFavorite(recipe.id, 'favorite')" @click="favoriteRecipe(recipe.id)"
                     class="favorite-button p-1 m-2 rounded-5 d-flex justify-content-center align-items-center fs-3 text-light">
-                    <i class="mdi mdi-heart"></i>
+                    <i class="mdi mdi-heart-outline unFavorited"></i>
                 </div>
                 <div v-if="checkFavorite(recipe.id, 'unfavorite')" @click="unfavoriteRecipe(recipe.id)"
                     class="unfavorite-button p-1 m-2 rounded-5 d-flex justify-content-center align-items-center fs-3"><i
-                        class="mdi mdi-heart"></i></div>
+                        class="mdi mdi-heart favorited"></i></div>
             </div>
         </section>
     </main>
@@ -100,20 +100,22 @@ export default {
     background-color: #F5E4D7;
 }
 
+.unFavorited {
+    color: red;
+}
+
 .unfavorite-button {
     cursor: pointer;
     height: 2.5rem;
     aspect-ratio: 1/1;
-    background-color: black;
-    color: red
+    color: red;
 }
 
 .favorite-button {
     cursor: pointer;
     height: 2.5rem;
     aspect-ratio: 1/1;
-    background-color: black;
-    z-index: 2;
+    color: black;
 }
 
 p {

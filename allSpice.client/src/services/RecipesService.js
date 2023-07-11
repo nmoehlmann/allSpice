@@ -11,6 +11,7 @@ class RecipesService {
         logger.log(res.data)
         AppState.recipes = res.data.map(r => new Recipe(r))
         logger.log(AppState.recipes, 'this is my appstate')
+        AppState.savedRecipes = AppState.recipes
     }
 
     async createRecipe(recipeData) {
@@ -32,6 +33,7 @@ class RecipesService {
         logger.log(myRecipes)
         AppState.recipes = myRecipes.map(r => new Recipe(r))
         logger.log(AppState.recipes, 'new array for my recipes')
+        AppState.savedRecipes = AppState.recipes
     }
 
     async favoriteRecipe(recipeId) {
@@ -63,6 +65,7 @@ class RecipesService {
         const res = await api.get('/account/favorites')
         logger.log(res.data, 'displaying favorites')
         AppState.recipes = res.data.map(r => new SubscriptionRecipe(r))
+        AppState.savedRecipes = AppState.recipes
     }
 
     async deleteRecipe(recipeId) {

@@ -3,8 +3,9 @@
         <div class="col-10">
             <li>{{ ingredient.quantity }} {{ ingredient.name }}</li>
         </div>
-        <div class="col-2">
-            <button @click="deleteIngredient(ingredient.id)" class="btn btn-danger deleteIngredientButton d-flex align-items-center"><i class="mdi mdi-minus-thick"></i></button>
+        <div class="col-2 d-flex align-items-center">
+            <button @click="deleteIngredient(ingredient.id)" class="deleteIngredientButton d-flex align-items-center"><i
+                    class="mdi mdi-minus-thick"></i></button>
         </div>
     </section>
 </template>
@@ -17,9 +18,9 @@ import Pop from '../utils/Pop';
 
 export default {
     props: {
-        ingredient: {Type: Ingredient, required: true}
+        ingredient: { Type: Ingredient, required: true }
     },
-    setup(){
+    setup() {
         return {
             async deleteIngredient(ingredientId) {
                 try {
@@ -35,8 +36,11 @@ export default {
 
 
 <style lang="scss" scoped>
-    .deleteIngredientButton {
-        height: 2rem;
-        aspect-ratio: 1/1;
-    }
+.deleteIngredientButton {
+    background: rgba($color: #000000, $alpha: 0);
+    border: none;
+    height: 1rem;
+    aspect-ratio: 1/1;
+    color: red;
+}
 </style>

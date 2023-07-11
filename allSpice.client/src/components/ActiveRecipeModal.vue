@@ -1,7 +1,7 @@
 <template>
     <div class="modal-dialog modal-dialog-centered modal-xl">
         <div class="modal-content container-fluid">
-            <main class="row" v-if="checkActiveRecipe('show')">
+            <main class="row">
                 <div class="col-4 recipeImg"></div>
                 <section class="col-8">
                     <header class="row mb-4">
@@ -22,7 +22,7 @@
                                 <h2>Ingredients</h2>
                             </div>
                             <div class="col-12 py-3">
-                                <section class="row mb-3" v-for="i in ingredients">
+                                <section class="row mb-3" v-for="i in ingredients" :key="i.id">
                                     <Ingredient :ingredient="i" />
                                     <!-- <li v-for="i in ingredients">{{ i.quantity }} {{ i.name }}</li> -->
                                 </section>
@@ -33,25 +33,25 @@
                                         </div>
                                         <div class="d-flex">
                                             <div class="d-flex flex-column">
-                                                <input class="form-control" type="text" placeholder="Name" v-model="editable.name" required>
-                                                <input class="form-control" type="text" placeholder="Quantity" v-model="editable.quantity" required>
+                                                <input class="form-control" type="text" placeholder="Name"
+                                                    v-model="editable.name" required>
+                                                <input class="form-control" type="text" placeholder="Quantity"
+                                                    v-model="editable.quantity" required>
                                             </div>
                                             <div class="d-flex">
-                                                <button class="btn plus-button mdi mdi-plus text-light" type="submit"></button>
+                                                <button class="btn plus-button mdi mdi-plus text-light"
+                                                    type="submit"></button>
                                             </div>
                                         </div>
                                     </form>
-                                    <div class="my-2 d-flex justify-content-end">
-                                        <button @click="deleteRecipe(recipe.id)" class="btn btn-danger mdi mdi-delete"></button>
-                                    </div>
                                 </section>
                             </div>
                         </div>
                     </content>
+                    <div class="my-2 d-flex justify-content-end delete-recipe-button" v-if="account.id == recipe.creatorId">
+                        <button @click="deleteRecipe(recipe.id)" class="btn btn-danger mdi mdi-delete"></button>
+                    </div>
                 </section>
-                <div v-if="checkActiveRecipe('hide')">
-                    <h1>HIIIII</h1>
-                </div>
             </main>
         </div>
     </div>
@@ -69,9 +69,9 @@ import { logger } from '../utils/Logger';
 
 
 export default {
-    setup(){
+    setup() {
         const editable = ref({})
-        
+
         // async function getIngredients() {
         //         // debugger
         //         try {
@@ -104,22 +104,25 @@ export default {
 
             async deleteRecipe(recipeId) {
                 try {
-                    await recipesService.deleteRecipe(recipeId)
-                    Modal.getOrCreateInstance('#activeRecipeModal').hide()
+                    if (await Pop.confirm("Are you sure you want to delete this recipe?")) {
+                        await recipesService.deleteRecipe(recipeId)
+                        Modal.getOrCreateInstance('#activeRecipeModal').hide()
+                        Pop.delete("Deleted Recipe")
+                    }
                 } catch (error) {
                     Pop.error('error deleting recipe', error)
                 }
             },
 
             checkActiveRecipe(showHide) {
-                if(showHide == 'show') {
-                    if(AppState.activeRecipe != null) {
+                if (showHide == 'show') {
+                    if (AppState.activeRecipe != null) {
                         logger.log('activeRecipe exists')
                         return true
                     }
                 }
-                if(showHide == 'hide') {
-                    if(AppState.activeRecipe == null) {
+                if (showHide == 'hide') {
+                    if (AppState.activeRecipe == null) {
                         logger.log('activeRecipe doesnt exist')
                         return true
                     }
@@ -132,29 +135,33 @@ export default {
 
 
 <style lang="scss" scoped>
+.delete-recipe-button {}
 
-    .plus-button {
-        background-color: #4f7d6f;
-        aspect-ratio: 1/1;
-        margin: .5rem;
-    }
+.plus-button {
+    background-color: #4f7d6f;
+    aspect-ratio: 1/1;
+    margin: .5rem;
+}
 
-    p, h1, h2 {
-        margin: 0;
-    }
+p,
+h1,
+h2 {
+    margin: 0;
+}
 
-    .card-header {
-        background-color: #4f7d6f;
-    }
+.card-header {
+    background-color: #4f7d6f;
+}
 
-    .card-body {
-        background-color: #bababa;
-    }
-    .recipeImg {
-        height: 30rem;
-        background-image: v-bind(recipeImg);
-        background-position: center;
-        background-size: cover;
-        background-repeat: no-repeat
-    }
+.card-body {
+    background-color: #bababa;
+}
+
+.recipeImg {
+    height: 30rem;
+    background-image: v-bind(recipeImg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat
+}
 </style>

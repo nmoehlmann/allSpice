@@ -55,6 +55,30 @@ export default class Pop {
     })
   }
 
+  static noUser(title = 'Warning!', icon = 'info', position = 'top-start', timer = 3000, progressBar = true) {
+    Swal.fire({
+      title,
+      icon,
+      position,
+      timer,
+      timerProgressBar: progressBar,
+      toast: true,
+      showConfirmButton: false
+    })
+  }
+
+  static delete(title = 'Deleted', icon = 'success', position = 'top', timer = 3000, progressBar = true) {
+    Swal.fire({
+      title,
+      icon,
+      position,
+      timer,
+      timerProgressBar: progressBar,
+      toast: true,
+      showConfirmButton: false
+    })
+  }
+
   /**
    * @param {import('axios').AxiosError | Error | String } Error An Error Object.
    * @param { String } eventTrigger Queryable trigger
