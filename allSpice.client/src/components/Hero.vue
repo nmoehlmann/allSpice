@@ -5,7 +5,7 @@
                 <Navbar />
             </div>
             <div class="col-12 d-flex justify-content-center align-items-center text-light">
-                <div class="fw-medium">
+                <div class="fw-medium hero-card">
                     <h1 class="title-text">All-Spice</h1>
                     <div class="text-center">
                         <p class="mb-2">Cherish Your Family</p>
@@ -17,10 +17,16 @@
                 <div class="d-flex justify-content-evenly align-items-center elevation-3 p-2 category-card fs-2">
                     <div>
                         <p @click="getAllRecipes()" class="home">Home</p>
-                        <div></div>
+                        <div v-if="checkActive('home')" class="selected"></div>
                     </div>
-                    <p @click="getMyRecipes()" class="myRecipes">My Recipes</p>
-                    <p @click="displayMyFavorites()" class="favorites">Favorites</p>
+                    <div>
+                        <p @click="getMyRecipes()" class="myRecipes">My Recipes</p>
+                        <div v-if="checkActive('myRecipes')" class="selected"></div>
+                    </div>
+                    <div>
+                        <p @click="displayMyFavorites()" class="favorites">Favorites</p>
+                        <div v-if="checkActive('favorites')" class="selected"></div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -29,6 +35,7 @@
 
 
 <script>
+import { AppState } from '../AppState';
 import { recipesService } from '../services/RecipesService';
 import Pop from '../utils/Pop';
 
@@ -37,6 +44,7 @@ export default {
         return {
             async getAllRecipes() {
                 try {
+                    AppState.category = 'home'
                     await recipesService.getAllRecipes()
                 } catch (error) {
                     Pop.error(error, 'trouble getting all recipes')
@@ -45,6 +53,7 @@ export default {
 
             async getMyRecipes() {
                 try {
+                    AppState.category = 'myRecipes'
                     await recipesService.getMyRecipes()
                 } catch (error) {
                     Pop.error(error, 'trouble getting your recipes')
@@ -53,9 +62,16 @@ export default {
 
             async displayMyFavorites() {
                 try {
+                    AppState.category = 'favorites'
                     await recipesService.displayMyFavorites()
                 } catch (error) {
                     Pop.error('error getting favorites', error)
+                }
+            },
+
+            checkActive(active) {
+                if(AppState.category == active) {
+                    return true
                 }
             }
         }
@@ -65,6 +81,19 @@ export default {
 
 
 <style lang="scss" scoped>
+
+.selected {
+    background-color: yellow;
+    height: .5rem;
+    transition-duration: 5000ms;
+}
+
+.hero-card {
+    border-radius: .5rem;
+    padding: 1rem;
+    backdrop-filter: blur(6px);
+    background-color: rgba($color: #000000, $alpha: .2);
+}
 .title-text {
     font-size: 7rem;
     font-family: 'Noto Serif Makasar', serif;
@@ -77,7 +106,7 @@ main {
 
 .category-container {
     position: relative;
-    top: 4rem;
+    top: 2rem;
 }
 
 .category-card {

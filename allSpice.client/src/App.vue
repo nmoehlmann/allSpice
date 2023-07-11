@@ -3,10 +3,10 @@
     <router-view />
   </main>
 
-  <div class="modal fade" id="recipeModal" tabindex="-1" aria-labelledby="createRecipeTab" aria-hidden="true" role="dialog">
+  <div class="modal instant" id="recipeModal" tabindex="-1" aria-labelledby="createRecipeTab" aria-hidden="true" role="dialog">
     <RecipeModal />
   </div>
-  <Modal class="modal fade" id="activeRecipeModal" tabindex="-1" aria-labelledby="recipeTab" aria-hidden="true" role="dialog">
+  <Modal class="modal instant" id="activeRecipeModal" tabindex="-1" aria-labelledby="recipeTab" aria-hidden="true" role="dialog">
     <ActiveRecipeModal />
   </Modal>
 </template>

@@ -7,8 +7,9 @@ export const AppState = reactive({
   account: {},
   recipes: [],
   accountRecipes: [],
-    /** @type {import('./models/Recipe.js').Recipe || null} */
+    /** @type {import('./models/Recipe.js').Recipe} */
   activeRecipe: {},
   ingredients: [],
-  favorites: []
+  favorites: [],
+  category: "home"
 })

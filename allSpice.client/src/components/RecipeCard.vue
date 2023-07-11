@@ -66,6 +66,7 @@ export default {
             async getActiveRecipe(recipeId) {
                 // debugger
                 try {
+                    AppState.activeRecipe = {}
                     await recipesService.getActiveRecipe(recipeId)
                     await ingredientsService.getIngredients(recipeId)
                 } catch (error) {
@@ -100,6 +101,7 @@ export default {
 }
 
 .unfavorite-button {
+    cursor: pointer;
     height: 2.5rem;
     aspect-ratio: 1/1;
     background-color: black;
@@ -107,6 +109,7 @@ export default {
 }
 
 .favorite-button {
+    cursor: pointer;
     height: 2.5rem;
     aspect-ratio: 1/1;
     background-color: black;
@@ -123,6 +126,7 @@ p {
     background-position: center;
     background-size: fill;
     background-repeat: no-repeat;
+    cursor: pointer;
 }
 
 .text {
