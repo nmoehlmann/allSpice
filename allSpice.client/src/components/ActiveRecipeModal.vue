@@ -2,8 +2,8 @@
     <div class="modal-dialog modal-dialog-centered modal-xl">
         <div class="modal-content container-fluid">
             <main class="row">
-                <div class="col-4 recipeImg"></div>
-                <section class="col-8">
+                <div class="col-12 col-lg-4 recipeImg"></div>
+                <section class="col-12 col-lg-8">
                     <header class="row mb-4">
                         <h1>{{ recipe.title }}</h1>
                         <p>{{ recipe.category }}</p>

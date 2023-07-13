@@ -9,7 +9,7 @@
       </div>
     </section>
     <section>
-      <div v-if="AppState?.favorites.length == 0">
+      <div v-if="AppState?.favorites.length === 0">
         <h1>HI</h1>
       </div>
     </section>
