@@ -67,6 +67,7 @@ export default {
                 // debugger
                 try {
                     AppState.activeRecipe = {}
+                    AppState.ingredients = []
                     await recipesService.getActiveRecipe(recipeId)
                     await ingredientsService.getIngredients(recipeId)
                 } catch (error) {

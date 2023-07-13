@@ -1,9 +1,9 @@
 <template>
   <section class="row navbar">
     <div class="d-flex justify-content-end align-items-center gap-3">
-      <div>
+      <div class="search-bar">
         <input @input.prevent="searchRecipes()" type="text" placeholder="Search Recipes" v-model="search"
-          class="form-control-md">
+          class="">
       </div>
       <Login />
     </div>
@@ -45,6 +45,10 @@ export default {
 </script>
 
 <style scoped>
+
+.search-bar {
+  
+}
 .navbar {
   height: 1rem;
 }
