@@ -8,6 +8,11 @@
         <RecipeCard :recipe="r" />
       </div>
     </section>
+    <section>
+      <div v-if="AppState?.favorites.length == 0">
+        <h1>HI</h1>
+      </div>
+    </section>
   </main>
   <footer class="footer container-fluid d-flex justify-content-end">
     <CreateRecipeButton />
