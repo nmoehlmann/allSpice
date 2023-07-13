@@ -57,6 +57,7 @@ class RecipesService {
     async getMyFavorites() {
         const res = await api.get('/account/favorites')
         logger.log(res.data, 'favorites')
+
         AppState.favorites = res.data.map(r => new SubscriptionRecipe(r))
         logger.log(AppState.favorites)
     }
