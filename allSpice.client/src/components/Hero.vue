@@ -82,6 +82,8 @@ export default {
 
 <style lang="scss" scoped>
 
+
+
 .selected {
     background-color: yellow;
     height: .5rem;
