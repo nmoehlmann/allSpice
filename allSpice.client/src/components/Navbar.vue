@@ -9,7 +9,7 @@
     </div>
   </section>
 </template>
-
+ 
 <script>
 import { ref } from "vue";
 // import Pop from "../utils/Pop.js";
