@@ -1,5 +1,6 @@
 <template>
   <section class="row navbar">
+    <h1>HI</h1>
     <div class="d-flex justify-content-end align-items-center gap-3">
       <div class="search-bar">
         <input @input.prevent="searchRecipes()" type="text" placeholder="Search Recipes" v-model="search"
