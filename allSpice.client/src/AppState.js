@@ -12,6 +12,5 @@ export const AppState = reactive({
   activeRecipe: {},
   ingredients: [],
   favorites: [],
-  category: "home",
-  itWorks: true
+  category: "home"
 })
