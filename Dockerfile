@@ -8,7 +8,7 @@ WORKDIR /app
 COPY . ./
 
 # Restore the .NET dependencies
-RUN dotnet restore
+RUN dotnet restore allSpice
 
 # Build the application
 RUN dotnet publish -c Release -o out
