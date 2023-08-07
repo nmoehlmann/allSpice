@@ -11,7 +11,7 @@ COPY . ./
 RUN dotnet restore allSpice
 
 # Build the application
-RUN dotnet publish -c Release -o out
+RUN dotnet publish allSpice -c Release -o out
 
 # Create a new image using a lighter .NET Runtime image
 FROM mcr.microsoft.com/dotnet/aspnet:6.0
