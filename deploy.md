@@ -1,0 +1,44 @@
+delete me: this is for docker
+
+name: Deploy to EC2 ☁️
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Docker Buildx 🤖
+        uses: docker/setup-buildx-action@v1
+
+      - name: Build and Push Docker Image 🐳
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+          EC2_IP_ADDRESS: ${{ secrets.EC2_IP_ADDRESS }}
+          DOCKER_IMAGE_TAG: latest
+        run: |
+          docker buildx create --use
+          docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+          docker buildx build --platform linux/amd64 -t nmoehlmann/allspice:$DOCKER_IMAGE_TAG --push .
+
+      - name: SSH Deploy 📔
+        env:
+          EC2_IP_ADDRESS: ${{ secrets.EC2_IP_ADDRESS }}
+          EC2_USERNAME: ${{ secrets.EC2_USERNAME }}
+          EC2_PEM_KEY: ${{ secrets.EC2_PEM_KEY }}
+        run: |
+          mkdir -p ~/.ssh
+          echo "$EC2_PEM_KEY" > ~/.ssh/id_rsa.pem
+          chmod 600 ~/.ssh/id_rsa.pem
+
+          # Replace "path/to/your/docker-compose.yml" with your actual Docker Compose file path
+          scp -i ~/.ssh/id_rsa.pem -r allSpice/docker-compose.yml $EC2_USERNAME@$EC2_IP_ADDRESS:/allSpice
+          ssh -i ~/.ssh/id_rsa.pem $EC2_USERNAME@$EC2_IP_ADDRESS "docker-compose -f /allSpice/docker-compose.yml up -d"
