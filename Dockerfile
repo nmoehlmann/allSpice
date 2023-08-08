@@ -12,7 +12,7 @@ FROM node
 
 WORKDIR /app
 
-COPY --from=client-build /app/allSpice/wwwroot
+COPY --from=client-build /app/allSpice/wwwroot .
 
 CMD ["/app"]
 
