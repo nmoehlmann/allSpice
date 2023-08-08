@@ -2,9 +2,9 @@
 
 FROM node AS client-build
 
-WORKDIR /
+WORKDIR /app
 
-COPY allSpice.client
+COPY . ./
 
 RUN npm i && npm run build
 
