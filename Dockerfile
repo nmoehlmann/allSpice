@@ -1,3 +1,13 @@
+# frontend
+
+FROM node
+
+WORKDIR /app
+
+RUN npm run build
+
+# backend
+
 # Use the .NET Core SDK image as the base image
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build-env
 
