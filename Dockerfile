@@ -2,19 +2,7 @@
 
 FROM node AS client-build
 
-WORKDIR /app
-
-COPY allSpice.client*.json ./
-
-RUN npm install
-
-COPY allSpice.client/ .
-
 RUN npm run build
-
-EXPOSE 80
-
-CMD [ "npm", "start" ]
 
 # backend
 
