@@ -2,19 +2,9 @@
 
 FROM node AS client-build
 
-WORKDIR /app
+COPY ./allSpice.client ./app/wwwroot
 
-COPY . ./
-
-RUN npm i && npm run build
-
-FROM node
-
-WORKDIR /app
-
-COPY --from=client-build /app/allSpice/wwwroot .
-
-CMD ["/app"]
+RUN npm run build
 
 # backend
 
