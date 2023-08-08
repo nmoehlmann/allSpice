@@ -1,6 +1,0 @@
-version: '3'
-services:
-  web:
-    image: nmoehlmann/allspice:latest
-    ports:
-      - "80:80"
