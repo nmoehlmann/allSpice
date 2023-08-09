@@ -38,14 +38,8 @@ WORKDIR /app
 # Copy the published output from the build-env to the new container
 COPY --from=build-env /app/out .
 
-FROM node:18
-
-RUN npm install /app/out/allSpice.client
-
-RUN npm run build /app/out/allSpice.client
-
 # Expose the port your application listens on
-EXPOSE 80
+EXPOSE 8080
 
 # Set the entry point for the container
 ENTRYPOINT ["dotnet", "allSpice.dll"]
