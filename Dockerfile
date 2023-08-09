@@ -39,7 +39,9 @@ WORKDIR /app
 COPY --from=build-env /app/out .
 
 # Expose the port your application listens on
-EXPOSE 8080
+EXPOSE 80
+
+RUN npm install /app/allSpice.client
 
 # Set the entry point for the container
 ENTRYPOINT ["dotnet", "allSpice.dll"]
