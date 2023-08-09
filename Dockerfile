@@ -2,10 +2,10 @@ FROM node:18
 
 WORKDIR /app
 
-COPY package*.son ./
-RUN npm install
+COPY ./allSpice.client /app/allSpice.client
 
-COPY . .
+RUN npm install
+RUN npm run build
 
 EXPOSE 7045
 
