@@ -26,7 +26,7 @@ COPY --from=build-env /app/out .
 
 FROM node:18
 
-WORKDIR /app
+WORKDIR /app/allSpice.client
 
 COPY . ./
 
