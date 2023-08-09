@@ -38,6 +38,8 @@ WORKDIR /app
 # Copy the published output from the build-env to the new container
 COPY --from=build-env /app/out .
 
+FROM node:18
+
 RUN npm install /app/out/allSpice.client
 
 RUN npm run build /app/out/allSpice.client
