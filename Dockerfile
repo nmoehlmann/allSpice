@@ -30,8 +30,8 @@ WORKDIR /app
 
 COPY . ./
 
-RUN npm install allSpice.client
-RUN npm run build allSpice.client
+RUN npm install
+RUN npm run build
 
 # WORKDIR /app
 
