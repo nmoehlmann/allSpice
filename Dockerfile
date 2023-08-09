@@ -1,11 +1,11 @@
 FROM node:18 AS client-build
 
-WORKDIR /app/allSpice.client
+WORKDIR /app
 
-COPY ./allSpice.client /allSpice.client/
+COPY . ./
 
-RUN npm install
-RUN npm run build
+RUN npm install allSpice.client
+RUN npm run build allSpice.client
 
 # backend
 
