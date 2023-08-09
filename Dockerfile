@@ -28,7 +28,7 @@ FROM node:18
 
 WORKDIR /app/allSpice.client
 
-COPY ./allSpice.client /app/allSpice.client/
+COPY ./allSpice.client /allSpice.client/
 
 RUN npm install
 RUN npm run build
