@@ -30,8 +30,8 @@ WORKDIR /app
 
 COPY ./allSpice.client app/out/wwwroot
 
-RUN npm install /app/out/wwwroot
-RUN npm run build /app/out/wwwroot
+RUN npm install /app/out/wwwroot/package.json
+RUN npm run build /app/out/wwwroot/package.json
 
 # Expose the port your application listens on
 EXPOSE 80
