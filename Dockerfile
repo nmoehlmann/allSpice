@@ -7,10 +7,6 @@ COPY ./allSpice.client /allSpice.client/
 RUN npm install
 RUN npm run build
 
-WORKDIR /app/allSpice.client
-
-COPY --from=client-build /app/allSpice.client .
-
 # backend
 
 # Use the .NET Core SDK image as the base image
