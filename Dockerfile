@@ -1,11 +1,11 @@
-FROM node:18 AS client-build
+# FROM node:18 AS client-build
 
-WORKDIR /app
+# WORKDIR /app
 
-COPY . ./
+# COPY . ./
 
-RUN npm install allSpice.client
-RUN npm run build allSpice.client
+# RUN npm install allSpice.client
+# RUN npm run build allSpice.client
 
 # backend
 
@@ -32,13 +32,6 @@ WORKDIR /app
 
 # Copy the published output from the build-env to the new container
 COPY --from=build-env /app/out .
-
-# WORKDIR /app
-
-# COPY ./allSpice.client /app/out/wwwroot
-
-# RUN npm install /app/out/wwwroot
-# RUN npm run build /app/out/wwwroot
 
 # Expose the port your application listens on
 EXPOSE 80
