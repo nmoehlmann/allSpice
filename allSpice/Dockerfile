@@ -1,16 +1,16 @@
-FROM node:18 AS client-build
+# FROM node:18 AS client-build
 
-ENV NODE_ENV=production
+# ENV NODE_ENV=production
 
-WORKDIR /app
+# WORKDIR /app
 
-COPY ["package.json", "package-lock.json*", "./"]
+# COPY ["package.json", "package-lock.json*", "./"]
 
-RUN npm install --production
+# RUN npm install --production
 
-COPY . .
+# COPY . .
 
-RUN npm run build
+# RUN npm run build
 
 # CMD ["node", "allSpice.client"]
 
