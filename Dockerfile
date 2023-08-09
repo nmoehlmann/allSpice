@@ -1,14 +1,16 @@
-# FROM node:18
+FROM node:18 AS client-build
 
-# ENV NODE_ENV=production
+ENV NODE_ENV=production
 
-# WORKDIR /app
+WORKDIR /app
 
-# COPY ["package.json", "package-lock.json*", "./"]
+COPY ["package.json", "package-lock.json*", "./"]
 
-# RUN npm install --production
+RUN npm install --production
 
-# COPY . .
+COPY . .
+
+RUN npm run build
 
 # CMD ["node", "allSpice.client"]
 
@@ -40,8 +42,6 @@ COPY --from=build-env /app/out .
 
 # Expose the port your application listens on
 EXPOSE 80
-
-RUN npm install /app/allSpice.client
 
 # Set the entry point for the container
 ENTRYPOINT ["dotnet", "allSpice.dll"]
