@@ -2,9 +2,14 @@
 
 FROM node AS client-build
 
-COPY ./allSpice.client ./app/wwwroot
+WORKDIR /app/wwwroot
+
+RUN npm install
+
+COPY . /app/wwwroot/
 
 RUN npm run build
+
 
 # backend
 
