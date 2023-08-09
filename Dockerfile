@@ -1,11 +1,4 @@
-FROM node:18
 
-WORKDIR /app
-
-COPY . ./
-
-RUN npm install allSpice.client
-RUN npm run build allSpice.client
 
 # backend
 
@@ -38,3 +31,12 @@ EXPOSE 80
 
 # Set the entry point for the container
 ENTRYPOINT ["dotnet", "allSpice.dll"]
+
+FROM node:18
+
+WORKDIR /app
+
+COPY . ./
+
+RUN npm install allSpice.client
+RUN npm run build allSpice.client
