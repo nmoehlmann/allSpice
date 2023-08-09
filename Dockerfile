@@ -10,7 +10,6 @@ COPY . /app/wwwroot/
 
 RUN npm run build
 
-
 # backend
 
 # Use the .NET Core SDK image as the base image
