@@ -4,8 +4,8 @@ WORKDIR /app
 
 COPY ./allSpice.client /app/allSpice.client
 
-RUN npm install
-RUN npm run build
+RUN npm install allSpice.client
+RUN npm run build allSpice.client
 
 EXPOSE 7045
 
