@@ -27,7 +27,7 @@ COPY --from=build-env /app/out .
 FROM node:18
 
 RUN npm install /allSpice.client
-RUN npm run build /allSPice.client
+RUN npm run build /allSpice.client
 
 # WORKDIR /app
 
