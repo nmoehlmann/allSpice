@@ -32,8 +32,8 @@ WORKDIR /app/allSpice.client
 
 COPY ./allSpice.client /app/allSpice.client
 
-RUN npm install allSpice.client
-RUN npm run build allSpice.client
+RUN npm install
+RUN npm run build
 
 # Expose the port your application listens on
 EXPOSE 80
