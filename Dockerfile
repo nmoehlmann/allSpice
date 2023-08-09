@@ -28,6 +28,8 @@ FROM node:18
 
 WORKDIR /app
 
+COPY . ./
+
 RUN npm install allSpice.client
 RUN npm run build allSpice.client
 
