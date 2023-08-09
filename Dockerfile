@@ -1,14 +1,14 @@
-# frontend
+FROM node as client-build
 
-FROM node AS client-build
+WORKDIR /app
 
-WORKDIR /app/wwwroot
+COPY . ./
 
 RUN npm install
 
-COPY . /app/wwwroot/
+WORKDIR /app
 
-RUN npm run build
+COPY --from=client-build /app/out/wwwroot .
 
 # backend
 
