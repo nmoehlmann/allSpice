@@ -1,16 +1,16 @@
-FROM node:18
+# FROM node:18
 
-ENV NODE_ENV=production
+# ENV NODE_ENV=production
 
-WORKDIR /app
+# WORKDIR /app
 
-COPY ["package.json", "package-lock.json*", "./"]
+# COPY ["package.json", "package-lock.json*", "./"]
 
-RUN npm install --production
+# RUN npm install --production
 
-COPY . .
+# COPY . .
 
-CMD ["node", "allSpice.client"]
+# CMD ["node", "allSpice.client"]
 
 # backend
 
@@ -37,6 +37,8 @@ WORKDIR /app
 
 # Copy the published output from the build-env to the new container
 COPY --from=build-env /app/out .
+
+RUN npm run build /app/out/allSpice.client
 
 # Expose the port your application listens on
 EXPOSE 80
