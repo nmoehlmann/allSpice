@@ -1,15 +1,3 @@
-FROM node as client-build
-
-WORKDIR /app
-
-COPY . ./
-
-RUN npm install
-
-WORKDIR /app
-
-COPY --from=client-build /app/out/wwwroot .
-
 # backend
 
 # Use the .NET Core SDK image as the base image
@@ -35,6 +23,15 @@ WORKDIR /app
 
 # Copy the published output from the build-env to the new container
 COPY --from=build-env /app/out .
+
+FROM node:18
+
+WORKDIR /app
+
+COPY ./allSpice.client app/out/wwwroot
+
+RUN npm install
+RUN npm run build
 
 # Expose the port your application listens on
 EXPOSE 80
