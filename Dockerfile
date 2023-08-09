@@ -2,7 +2,14 @@
 
 # Use the .NET Core SDK image as the base image
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build-env
+FROM node:18
 
+WORKDIR /app/allSpice.client
+
+COPY ./allSpice.client /allSpice.client/
+
+RUN npm install
+RUN npm run build
 # Set the working directory inside the container
 WORKDIR /app
 
@@ -23,15 +30,6 @@ WORKDIR /app
 
 # Copy the published output from the build-env to the new container
 COPY --from=build-env /app/out .
-
-FROM node:18
-
-WORKDIR /app/allSpice.client
-
-COPY ./allSpice.client /allSpice.client/
-
-RUN npm install
-RUN npm run build
 
 # WORKDIR /app
 
