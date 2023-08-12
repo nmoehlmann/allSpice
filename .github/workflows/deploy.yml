@@ -38,5 +38,5 @@ jobs:
           chmod 600 ~/.ssh/id_rsa.pem
 
           # Replace "path/to/your/docker-compose.yml" with your actual Docker Compose file path
-          scp -i ~/.ssh/id_rsa.pem -o StrictHostKeyChecking=no allSpice/docker-compose.yml $EC2_USERNAME@$EC2_IP_ADDRESS:~/
+          scp -i ~/.ssh/id_rsa.pem -o StrictHostKeyChecking=no docker-compose.yml $EC2_USERNAME@$EC2_IP_ADDRESS:~/
           ssh -i ~/.ssh/id_rsa.pem $EC2_USERNAME@$EC2_IP_ADDRESS "sudo docker-compose -f ~/docker-compose.yml up -d"
