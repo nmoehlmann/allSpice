@@ -11,7 +11,7 @@ env:
   EC2_PEM_KEY: ${{ secrets.EC2_PEM_KEY }}
 
 jobs:
-  deploy:
+  Update:
     runs-on: ubuntu-latest
 
     steps:
