@@ -1,13 +1,17 @@
 FROM node:18
 
+ENV NODE_ENV=production
+
 WORKDIR /app
 
-COPY ./allSpice.client /app/allSpice.client
+COPY package.json .
+COPY package-lock.json .
 
-RUN npm install allSpice.client
-RUN npm run build allSpice.client
+RUN npm install
 
-EXPOSE 7045
+COPY . .
 
-CMD ["npm", "start"]
+RUN npm run build
+
+CMD ["sh", "-c" "run build"]
 

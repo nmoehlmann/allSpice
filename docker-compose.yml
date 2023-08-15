@@ -1,25 +1,37 @@
-version: '3'
-services:
-  web:
-    build: ./allSpice
-    image: nmoehlmann/allspice:latest
-    ports:
-      - "80:80"
-
 # version: '3'
 # services:
-#   frontend:
-#   build: ./allSpice.client
-#   ports:
-#     - "7045:7045"
-#   container_name: frontend-docker
-#   restart: always
-#   links:
-#     - backend
-
-#   backend:
+#   web:
 #     build: ./allSpice
+#     image: nmoehlmann/allspice:latest
 #     ports:
 #       - "80:80"
-#     container_name: backend-docker
-#     restart: always
+
+version: "3.8"
+
+services:
+
+api:
+  container_name: allSpice-api
+  restart: unless-stopped
+  image: allSpice-api
+  build:
+    context: allSpice
+    target: production
+    dockerfile: Dockerfile
+  ports:
+    - 7045:7045
+  networks:
+    - shared-networks
+
+client:
+  container_name: allSpice-client
+  restart: unless-stopped
+  image: allSpice-client
+  build:
+    context: allSpice.client
+    target: production
+    dockerfile: Dockerfile
+  ports:
+    - 80:80
+  networks:
+    - shared-networks
