@@ -4,7 +4,7 @@ services:
     build: ./allSpice
     image: nmoehlmann/allspice:latest
     ports:
-      - "7045:7045"
+      - "80:80"
 
 # version: '3'
 # services:
