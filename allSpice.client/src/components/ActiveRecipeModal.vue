@@ -1,5 +1,5 @@
 <template>
-    <div class="modal-dialog modal-dialog-centered modal-xl">
+    <div class="modal-dialog modal-dialog-centered modal-xl" v-if="recipe">
         <div class="modal-content container-fluid">
             <main class="row">
                 <div class="col-12 col-lg-4 recipeImg"></div>
@@ -89,7 +89,7 @@ export default {
             editable,
             account: computed(() => AppState.account),
             recipe: computed(() => AppState.activeRecipe),
-            recipeImg: computed(() => `url(${AppState.activeRecipe.img})`),
+            recipeImg: computed(() => `url(${AppState.activeRecipe?.img})`),
             ingredients: computed(() => AppState.ingredients),
 
             async createIngredient(recipeId) {

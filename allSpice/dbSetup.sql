@@ -1,4 +1,4 @@
--- Active: 1687895587777@@SG-Database-7664-mysql-master.servers.mongodirector.com@3306@firstDatabase
+-- Active: 1692906027901@@54.149.231.87@3306@allSpiceDB
 
 CREATE TABLE
     IF NOT EXISTS accounts(
@@ -38,3 +38,8 @@ CREATE TABLE
         FOREIGN KEY (accountId) REFERENCES accounts(id) ON DELETE CASCADE,
         FOREIGN KEY (recipeId) REFERENCES recipes(id) ON DELETE CASCADE
     ) default charset utf8 COMMENT '';
+
+INSERT INTO recipes (title, instructions, category, img, creatorId)
+VALUES ('Delicious Pancakes', 'Mix the batter and cook on a hot griddle...', 'Breakfast', 'https://hips.hearstapps.com/hmg-prod/images/best-homemade-pancakes-index-640775a2dbad8.jpg?crop=0.8890503582601677xw:1xh;center,top&resize=1200:*', '1');
+
+
