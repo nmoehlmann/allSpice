@@ -3,14 +3,14 @@
     <router-view />
   </main>
 
-  <Modal class="modal instant" id="recipeModal" tabindex="-1" aria-labelledby="createRecipeTab" aria-hidden="true"
+  <div class="modal instant" id="recipeModal" tabindex="-1" aria-labelledby="createRecipeTab" aria-hidden="true"
     role="dialog">
     <RecipeModal />
-  </Modal>
-  <Modal class="modal instant" id="activeRecipeModal" tabindex="-1" aria-labelledby="recipeTab" aria-hidden="true"
+  </div>
+  <div class="modal instant" id="activeRecipeModal" tabindex="-2" aria-labelledby="recipeTab" aria-hidden="true"
     role="dialog">
     <ActiveRecipeModal />
-  </Modal>
+  </div>
 </template>
 
 <script>

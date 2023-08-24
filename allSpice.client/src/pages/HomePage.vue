@@ -8,11 +8,11 @@
         <RecipeCard :recipe="r" />
       </div>
     </section>
-    <section>
-      <div v-if="AppState?.favorites.length === 0">
-        <h1>HI</h1>
+    <!-- <section v-if="AppState?.recipes.length == []">
+      <div class="d-flex justify-content-center mt-5">
+        <h1>There are no recipes yet. Create one!</h1>
       </div>
-    </section>
+    </section> -->
   </main>
   <footer class="footer container-fluid d-flex justify-content-end">
     <CreateRecipeButton />

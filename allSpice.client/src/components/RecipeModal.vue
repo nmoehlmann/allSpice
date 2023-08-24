@@ -40,7 +40,7 @@
         <section class="row my-4">
             <div class="d-flex align-items-center gap-3 justify-content-end">
                 <button type="button" data-bs-dismiss="modal" class="cancel-button" aria-label="Close">Cancel</button>
-                <button type="submit" class="submit-button btn btn-success">Submit</button>
+                <button type="submit" class="submit-button btn btn-success" data-bs-dismiss="modal" data-bs-target="#recipeModal">Submit</button>
             </div>
         </section>
     </form>
@@ -65,9 +65,11 @@ export default {
             async createRecipe() {
                 try {
                     const formData = editable.value
+                    const activeModel = document.getElementById('recipeModal')
                     await recipesService.createRecipe(formData)
                     editable.value = {}
-                    Modal.getOrCreateInstance('#activeRecipeModal').hide()
+                    activeModel.addEventListener('hidden.bs.modal', event => {
+                    })
                 } catch (error) {
                     Pop.error('error creating recipe', error)
                 }

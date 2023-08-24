@@ -49,7 +49,10 @@
                         </div>
                     </content>
                     <div class="my-2 d-flex justify-content-end delete-recipe-button" v-if="account.id == recipe.creatorId">
-                        <button @click="deleteRecipe(recipe.id)" class="btn btn-danger mdi mdi-delete"></button>
+                        <button 
+                        @click="deleteRecipe(recipe.id)" 
+                        class="btn btn-danger mdi mdi-delete">
+                        </button>
                     </div>
                 </section>
             </main>
@@ -64,7 +67,6 @@ import { AppState } from '../AppState';
 import Pop from '../utils/Pop';
 import { ingredientsService } from '../services/IngredientsService';
 import { recipesService } from '../services/RecipesService';
-import { Modal } from 'bootstrap';
 import { logger } from '../utils/Logger';
 
 
@@ -106,7 +108,8 @@ export default {
                 try {
                     if (await Pop.confirm("Are you sure you want to delete this recipe?")) {
                         await recipesService.deleteRecipe(recipeId)
-                        Modal.getOrCreateInstance('#activeRecipeModal').hide()
+                        const activeModel = document.getElementById('activeRecipeModal')
+                        activeModel.addEventListener('hide.bs.modal')
                         Pop.delete("Deleted Recipe")
                     }
                 } catch (error) {
@@ -135,7 +138,6 @@ export default {
 
 
 <style lang="scss" scoped>
-.delete-recipe-button {}
 
 .plus-button {
     background-color: #4f7d6f;
