@@ -26,10 +26,10 @@ WORKDIR /app
 COPY . ./
 
 # Restore the .NET dependencies
-RUN dotnet restore allSpice
+RUN dotnet restore
 
 # Build the application
-RUN dotnet publish allSpice -c Release -o out
+RUN dotnet publish -c Release -o out
 
 # Create a new image using a lighter .NET Runtime image
 FROM mcr.microsoft.com/dotnet/aspnet:6.0
