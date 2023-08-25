@@ -1,7 +1,10 @@
 <template>
     <main class="elevation-3 my-3 mx-3 d-flex flex-column justify-content-between food-card-background">
-        <section class="my-3 mx-3 d-flex flex-column justify-content-between rounded-2 food-card" data-bs-toggle="modal"
-            data-bs-target="#activeRecipeModal" @click="getActiveRecipe(recipe.id)">
+        <section 
+        class="my-3 mx-3 d-flex flex-column justify-content-between rounded-2 food-card" 
+        data-bs-toggle="modal"
+        data-bs-target="#activeRecipeModal" 
+        @click="getActiveRecipe(recipe.id)">
             <section class="d-flex justify-content-between text-light">
                 <div class="text p-1 m-2">{{ recipe.category }}</div>
             </section>
