@@ -55,7 +55,7 @@ public class Startup
                 .AllowAnyHeader()
                 .AllowCredentials()
                 .WithOrigins(new string[]{
-                "http://localhost:8080", "http://localhost:8081"
+                "https://allspiceclient.onrender.com", "http://localhost:8080"
             });
             });
     });
