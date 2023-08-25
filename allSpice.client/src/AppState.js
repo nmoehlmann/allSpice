@@ -10,5 +10,5 @@ export const AppState = reactive({
   ingredients: [],
   favorites: [],
   category: "home",
-  HIIIIsss: false
+  isModalOpen: false
 })

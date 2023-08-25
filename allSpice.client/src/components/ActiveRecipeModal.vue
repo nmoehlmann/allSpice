@@ -1,12 +1,12 @@
 <template>
-    <div class="modal-dialog modal-dialog-centered modal-xl" v-if="recipe">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
         <div class="modal-content container-fluid">
             <main class="row">
                 <div class="col-12 col-lg-4 recipeImg"></div>
                 <section class="col-12 col-lg-8">
                     <header class="row mb-4">
-                        <h1>{{ recipe.title }}</h1>
-                        <p>{{ recipe.category }}</p>
+                        <h1>{{ recipe?.title }}</h1>
+                        <p>{{ recipe?.category }}</p>
                     </header>
                     <content class="row d-flex justify-content-evenly">
                         <div class="col-5 recipe-card elevation-2">
@@ -14,7 +14,7 @@
                                 <h2>Recipe Instructions</h2>
                             </div>
                             <div class="col-12 py-3">
-                                <p>{{ recipe.instructions }}</p>
+                                <p>{{ recipe?.instructions }}</p>
                             </div>
                         </div>
                         <div class="col-5 recipe-card elevation-2">
@@ -26,8 +26,8 @@
                                     <Ingredient :ingredient="i" />
                                     <!-- <li v-for="i in ingredients">{{ i.quantity }} {{ i.name }}</li> -->
                                 </section>
-                                <section class="row" v-if="account.id == recipe.creatorId">
-                                    <form @submit.prevent="createIngredient(recipe.id)">
+                                <section class="row" v-if="account?.id == recipe?.creatorId">
+                                    <form @submit.prevent="createIngredient(recipe?.id)">
                                         <div class="text-center my-2 fs-5">
                                             <p>Add Ingredients</p>
                                         </div>
@@ -48,7 +48,7 @@
                             </div>
                         </div>
                     </content>
-                    <div class="my-2 d-flex justify-content-end delete-recipe-button" v-if="account.id == recipe.creatorId">
+                    <div class="my-2 d-flex justify-content-end delete-recipe-button" v-if="account.id == recipe?.creatorId">
                         <button 
                         @click="deleteRecipe(recipe.id)" 
                         class="btn btn-danger mdi mdi-delete">
@@ -68,6 +68,7 @@ import Pop from '../utils/Pop';
 import { ingredientsService } from '../services/IngredientsService';
 import { recipesService } from '../services/RecipesService';
 import { logger } from '../utils/Logger';
+import { Modal } from 'bootstrap';
 
 
 export default {
@@ -109,7 +110,7 @@ export default {
                     if (await Pop.confirm("Are you sure you want to delete this recipe?")) {
                         await recipesService.deleteRecipe(recipeId)
                         const activeModel = document.getElementById('activeRecipeModal')
-                        activeModel.addEventListener('hide.bs.modal')
+                        Modal.getInstance(activeModel).hide()
                         Pop.delete("Deleted Recipe")
                     }
                 } catch (error) {

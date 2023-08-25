@@ -2,14 +2,23 @@
   <main>
     <router-view />
   </main>
-
-  <div class="modal instant" id="recipeModal" tabindex="-1" aria-labelledby="createRecipeTab" aria-hidden="true"
-    role="dialog">
-    <RecipeModal />
-  </div>
-  <div class="modal instant" id="activeRecipeModal" tabindex="-2" aria-labelledby="recipeTab" aria-hidden="true"
+  <div 
+    class="modal fade" 
+    id="activeRecipeModal" 
+    tabindex="-1" 
+    aria-labelledby="Recipe View"
+    aria-hidden="true"
     role="dialog">
     <ActiveRecipeModal />
+  </div>
+  <div 
+    class="modal instant" 
+    id="recipeModal" 
+    tabindex="-1" 
+    aria-labelledby="createRecipeTab"
+    aria-hidden="true"
+    role="dialog">
+    <RecipeModal />
   </div>
 </template>
 
@@ -18,11 +27,11 @@ import { computed } from 'vue'
 import { AppState } from './AppState'
 
 export default {
-  setup() {
-    return {
-      appState: computed(() => AppState)
+    setup() {
+        return {
+            appState: computed(() => AppState)
+        };
     }
-  }
 }
 </script>
 <style lang="scss">
