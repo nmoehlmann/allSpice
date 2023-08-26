@@ -55,7 +55,7 @@ public class Startup
                 .AllowAnyHeader()
                 .AllowCredentials()
                 .WithOrigins(new string[]{
-                "https://allspiceclient.onrender.com", "http://localhost:8080"
+                "https://allspiceclient.onrender.com", "http://localhost:8080", "http://localhost:8081"
             });
             });
     });
@@ -77,7 +77,7 @@ public class Startup
 
   private IDbConnection CreateDbConnection()
   {
-    string connectionString = Configuration["CONNECTION_STRING"];
+    string connectionString = Environment.GetEnvironmentVariable("CONNECTION_STRING");
     return new MySqlConnection(connectionString);
   }
 
