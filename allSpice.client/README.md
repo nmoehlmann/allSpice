@@ -16,6 +16,4 @@ AllSpice
 - All CRUD methods used against MySQL database
 - SQL used inside repos with dapper
 
-<img src="https://w7.pngwing.com/pngs/854/555/png-transparent-vue-js-hd-logo-thumbnail.png" />
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Microsoft_.NET_logo.svg/2048px-Microsoft_.NET_logo.svg.png" />
-<img src="https://brandslogos.com/wp-content/uploads/images/large/mysql-logo-1.png" />
+<img src="https://media.istockphoto.com/id/1454791365/vector/pixel-glasses.jpg?s=612x612&w=0&k=20&c=qp8Mf76oiSh24WjFA0_vZnd7VkAHnVhVa0tgNvwzTdo=" />
