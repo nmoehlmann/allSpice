@@ -1,16 +1,21 @@
-CodeWorks Vue Starter
+AllSpice
 =====================
-This template is designed to help get students started building vue applications
+## Features
 
-## Legal Overview
+- Create and customize recipes
+- Favorite recipes and filter them by category
 
-The content under the CodeWorks®, LLC Organization and all of the individual repos are solely intended for use by CodeWorks Instruction to deliver Educational content to CodeWorks Students.
+## Client
 
----
+- Vue.js mixed in with MVC style framework.
+- Mostly vanilla css with bootstrap
 
-## Copyright
+## Server
 
-© CodeWorks® LLC, 2021. Unauthorized use and/or duplication of this material without express and written permission from CodeWorks, LLC is strictly prohibited.
+- ASP.NET C# framework
+- All CRUD methods used against MySQL database
+- SQL used inside repos with dapper
 
-
-<img src="https://bcw.blob.core.windows.net/public/img/7815839041305055" width="125">
+<img src="https://w7.pngwing.com/pngs/854/555/png-transparent-vue-js-hd-logo-thumbnail.png" />
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Microsoft_.NET_logo.svg/2048px-Microsoft_.NET_logo.svg.png" />
+<img src="https://brandslogos.com/wp-content/uploads/images/large/mysql-logo-1.png" />
